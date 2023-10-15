@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MouseEvent</title>
+  </head>
+  <body>
+    <canvas
+      style="background-color: black"
+      id="canvas"
+      width="700"
+      height="700"
+  
+    ></canvas>
+
+    <script>
+      const canvas = document.getElementById("canvas");
+      const context = canvas.getContext("2d");
+
+      canvas.addEventListener("mousemove", (event) => {
+        console.log(event.clientX, event.clientY);
+
+        context.clearRect(0, 0, 700, 700); 
+
+        context.beginPath();
+        context.fillStyle = "red";
+        context.arc(event.clientX, event.clientY, 50, 0, 360);
+        context.fill();
+
+        context.beginPath();
+        context.fillStyle = "blue";
+        context.arc(event.clientX, event.clientY, 40, 0, 360);
+        context.fill();
+
+        context.beginPath();
+        context.fillStyle = "yellow";
+        context.arc(event.clientX, event.clientY, 30, 0, 360);
+        context.fill();
+
+        context.beginPath();
+        context.fillStyle = "green";
+        context.arc(event.clientX, event.clientY, 20, 0, 360);
+        context.fill();
+
+        context.beginPath();
+        context.fillStyle = "white";
+        context.arc(event.clientX, event.clientY, 10, 0, 360);
+        context.fill();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.code === "ArrowUp") {
+          console.log("move");
+        }
+      });
+    </script>
+  </body>
+</html>
