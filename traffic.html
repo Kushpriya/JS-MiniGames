@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<body>
+    <canvas width="350"
+    height="350"
+     id="canvas" style="border: 2px solid black;"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById("canvas");  // paper
+    let context = canvas.getContext("2d"); //pen
+    
+    // this is a board
+    context.beginPath();
+    context.fillStyle = "black";
+    context.rect(0,0, 260, 100);
+    context.fill();
+    
+    // red circle
+    context.beginPath();
+    context.fillStyle = "red";
+    context.arc(50, 50, 30, 0, 2* Math.PI);
+    context.fill();
+    
+    // yellow circle
+    context.beginPath();
+    context.fillStyle = "yellow";
+    context.arc(120, 50, 30, 0, 2* Math.PI);
+    context.fill();
+
+    // green circle
+    context.beginPath();
+    context.fillStyle = "green";
+    context.arc(200, 50, 30, 0, 2* Math.PI);
+    context.fill();
+    
+    
+
+
+</script>
+</html>
