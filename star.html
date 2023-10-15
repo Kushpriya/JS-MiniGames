@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Canvas Star</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="800" height="700"
+  style="background-color: black; border: 5px solid black;"></canvas>
+
+  
+  <script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const stars = [];
+
+    // Create 50 star objects with random properties
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 20 + 1,
+        speed: Math.random() * 2 + 1,
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+
+      // Draw and update each star in the stars array
+      for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+
+        ctx.beginPath();
+        ctx.moveTo(star.x, star.y - star.size / 2);
+
+        for (let j = 0; j < 20; j++) {
+          const angle = (Math.PI * 2 * j) / 5 - Math.PI / 2;
+          const x = star.x + Math.cos(angle) * star.size * (j % 2 === 0 ? 1 : 0.5);
+          const y = star.y + Math.sin(angle) * star.size * (j % 2 === 0 ? 1 : 0.5);
+          ctx.lineTo(x, y);
+        }
+
+        ctx.closePath();
+        ctx.fillStyle = "white";
+        ctx.fill();
+
+        // Update star's position for the next frame
+        star.y += star.speed;
+
+        // Reset star position when it goes out of the canvas
+        if (star.y > canvas.height + star.size) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+
+      requestAnimationFrame(drawStars); // Continue the animation loop
+    }
+
+    drawStars(); // Start the animation
+  </script>
+</body>
+</html>
