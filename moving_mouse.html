@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moving mouse</title>
+  </head>
+  <body>
+    <canvas
+      style="background-color:purple"
+      id="canvas"
+      width="500"
+      height="500"></canvas>
+
+    <script>
+      const canvas = document.getElementById("canvas");
+      const c = canvas.getContext("2d");
+
+      let x = 100;
+      let y = 100;
+
+      canvas.addEventListener("click",(e)=>{
+        x=e.clientX;
+        y=e.clientY; 
+        draw();
+
+      });
+
+      function draw()
+      {
+        if(y < canvas.height - 5)
+        {
+        c.clearRect(0, 0, 500, 500);
+        console.log("x = ", x);
+        c.beginPath();
+        c.fillStyle = "darkgreen";
+        c.arc(x,y,20,0,360);
+        c.fill();
+        y += 1;
+
+     }
+        window.requestAnimationFrame(draw);
+      }
+
+    </script>
+  </body>
+</html>
